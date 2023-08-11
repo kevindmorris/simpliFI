@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/simplifi/static/css/main.e6c13ad2.css",
-    "main.js": "/simplifi/static/js/main.624abd93.js",
-    "index.html": "/simplifi/index.html",
-    "main.e6c13ad2.css.map": "/simplifi/static/css/main.e6c13ad2.css.map",
-    "main.624abd93.js.map": "/simplifi/static/js/main.624abd93.js.map"
+    "main.css": "/simpliFI/static/css/main.e6c13ad2.css",
+    "main.js": "/simpliFI/static/js/main.624abd93.js",
+    "index.html": "/simpliFI/index.html",
+    "main.e6c13ad2.css.map": "/simpliFI/static/css/main.e6c13ad2.css.map",
+    "main.624abd93.js.map": "/simpliFI/static/js/main.624abd93.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
