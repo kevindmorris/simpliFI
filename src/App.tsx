@@ -1,23 +1,34 @@
-import { Container, Paper, TextField, useTheme } from "@mui/material";
+import { Container, Paper, useTheme } from "@mui/material";
 import React from "react";
-import Chart from "./Chart";
+import Controls from "./Controls";
+import Graph from "./Graph";
 
 export default function App() {
   const theme = useTheme();
 
-  const [initialDeposit, setInitialDeposit] = React.useState<number>(20000);
-  const [yearlyContribution, setYearlyContribution] = React.useState<number>(1000);
-  const [yearsOfGrowth, setYearsOfGrowth] = React.useState<number>(10);
-  const [rateOfReturn, setRateOfReturn] = React.useState<number>(6);
+  const [width, setWidth] = React.useState<number>(window.innerWidth);
+  React.useEffect(() => {
+    setWidth(window.innerWidth);
+  }, [window.innerWidth]);
+
+  const [initialDeposit, setInitialDeposit] = React.useState<number>(10000);
+  const [contribtution, setContribution] = React.useState<number>(100);
+  const [contribtutionFrequency, setContibutionFrequency] =
+    React.useState<number>(12);
+  const [yearsOfGrowth, setYearsOfGrowth] = React.useState<number>(5);
+  const [rateOfReturn, setRateOfReturn] = React.useState<number>(7);
+  const [compoundFrequency, setCompoundFrequency] = React.useState<number>(12);
 
   return (
     <Container
       style={{
         width: "100vw",
         height: "100vh",
+        overflowY: "auto",
         paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
         display: "flex",
+        flexDirection: width < 1000 ? "column" : "row",
         gap: theme.spacing(6),
       }}
     >
@@ -29,60 +40,44 @@ export default function App() {
           padding: theme.spacing(3),
           display: "flex",
           flexDirection: "column",
-          gap: theme.spacing(3),
         }}
       >
-        <TextField
-          fullWidth
-          label="Initial Deposit"
-          type="number"
-          value={initialDeposit}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            let newValue = parseFloat(event.target.value);
-            setInitialDeposit(newValue);
-          }}
-        />
-        <TextField
-          fullWidth
-          label="Yearly Contribution"
-          type="number"
-          value={yearlyContribution}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            let newValue = parseFloat(event.target.value);
-            setYearlyContribution(newValue);
-          }}
-        />
-        <TextField
-          fullWidth
-          label="Years of Growth"
-          type="number"
-          value={yearsOfGrowth}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            let newValue = parseInt(event.target.value);
-            setYearsOfGrowth(newValue);
-          }}
-        />
-        <TextField
-          fullWidth
-          label="Yearly Rate of Return"
-          type="number"
-          value={rateOfReturn}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            let newValue = parseFloat(event.target.value);
-            setRateOfReturn(newValue);
-          }}
+        <Controls
+          initialDeposit={initialDeposit}
+          setInitialDeposit={setInitialDeposit}
+          contribution={contribtution}
+          setContribution={setContribution}
+          contributionFrequency={contribtutionFrequency}
+          setContibutionFrequency={setContibutionFrequency}
+          rateOfReturn={rateOfReturn}
+          setRateOfReturn={setRateOfReturn}
+          compoundFrequency={compoundFrequency}
+          setCompoundFrequency={setCompoundFrequency}
+          yearsOfGrowth={yearsOfGrowth}
+          setYearsOfGrowth={setYearsOfGrowth}
         />
       </Paper>
-      <Paper variant="outlined" sx={{ flex: 2, height: "100%" }}>
-        {initialDeposit &&
-        yearlyContribution &&
-        rateOfReturn &&
-        yearsOfGrowth ? (
-          <Chart
-            a={initialDeposit}
-            p={yearlyContribution}
-            r={rateOfReturn / 100}
-            t={yearsOfGrowth}
+
+      <Paper
+        variant="outlined"
+        sx={{
+          flex: 2,
+          minHeight: 500,
+          height: "100%",
+          padding: theme.spacing(3),
+        }}
+      >
+        {initialDeposit !== undefined &&
+        contribtution !== undefined &&
+        rateOfReturn !== undefined &&
+        yearsOfGrowth !== undefined ? (
+          <Graph
+            initialDeposit={initialDeposit}
+            contribution={contribtution}
+            contributionFrequency={contribtutionFrequency}
+            rateOfReturn={rateOfReturn / 100}
+            compoundFrequency={compoundFrequency}
+            yearsOfGrowth={yearsOfGrowth}
           />
         ) : null}
       </Paper>
