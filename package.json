@@ -1,6 +1,7 @@
 {
   "name": "simplifi",
   "version": "0.0.0",
+  "homepage": "https://kevindmorris.github.io/simplifi",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -22,7 +23,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
