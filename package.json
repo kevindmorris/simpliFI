@@ -1,7 +1,7 @@
 {
   "name": "simplifi",
   "version": "0.0.0",
-  "homepage": "https://kevindmorris.github.io/simpliFI",
+  "homepage": "https://kevindmorris.github.io/simpliFI/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
